@@ -1,8 +1,3 @@
-ru\mobydrake\servlets\MainServlet.class
-ru\mobydrake\servlets\OrderServlet.class
-ru\mobydrake\servlets\CartServlet.class
-ru\mobydrake\servlets\MenuServlet.class
-ru\mobydrake\servlets\ProductServlet.class
-ru\mobydrake\servlets\CatalogServlet.class
-ru\mobydrake\servlets\TypeCoderFilter.class
-ru\mobydrake\servlets\ExceptionFilter.class
+ru\mobydrake\entities\Product.class
+ru\mobydrake\servlets\Calc.class
+ru\mobydrake\servlets\Controller.class
