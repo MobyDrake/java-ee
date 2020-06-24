@@ -1,8 +1,3 @@
-D:\GitHub\GeekBrains\java-ee\first-ee-app\src\main\java\ru\mobydrake\servlets\CatalogServlet.java
-D:\GitHub\GeekBrains\java-ee\first-ee-app\src\main\java\ru\mobydrake\servlets\TypeCoderFilter.java
-D:\GitHub\GeekBrains\java-ee\first-ee-app\src\main\java\ru\mobydrake\servlets\ProductServlet.java
-D:\GitHub\GeekBrains\java-ee\first-ee-app\src\main\java\ru\mobydrake\servlets\MainServlet.java
-D:\GitHub\GeekBrains\java-ee\first-ee-app\src\main\java\ru\mobydrake\servlets\MenuServlet.java
-D:\GitHub\GeekBrains\java-ee\first-ee-app\src\main\java\ru\mobydrake\servlets\OrderServlet.java
-D:\GitHub\GeekBrains\java-ee\first-ee-app\src\main\java\ru\mobydrake\servlets\CartServlet.java
-D:\GitHub\GeekBrains\java-ee\first-ee-app\src\main\java\ru\mobydrake\servlets\ExceptionFilter.java
+D:\GitHub\GeekBrains\java-ee\first-ee-app\src\main\java\ru\mobydrake\entities\Product.java
+D:\GitHub\GeekBrains\java-ee\first-ee-app\src\main\java\ru\mobydrake\servlets\Calc.java
+D:\GitHub\GeekBrains\java-ee\first-ee-app\src\main\java\ru\mobydrake\servlets\Controller.java
