@@ -38,4 +38,8 @@ public class ProductRepository {
         product.setId((productList.size() + 1L));
         productList.add(product);
     }
+
+    public void delete(Product product) {
+        productList.remove(product);
+    }
 }

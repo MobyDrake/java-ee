@@ -7,6 +7,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.List;
 
 @Named
@@ -36,8 +37,17 @@ public class ProductController implements Serializable {
         return "/product.xhtml?faces-redirect=true";
     }
 
+    public String editProduct(Product product) {
+        this.product = product;
+        return "/product.xhtml?faces-redirect=true";
+    }
+
+    public void deleteProduct(Product product) throws SQLException {
+        productRepository.delete(product);
+    }
+
     public String saveProduct() {
         productRepository.saveProduct(product);
-        return "catalog.xhtml";
+        return "/index.xhtml?faces-redirect=true";
     }
 }

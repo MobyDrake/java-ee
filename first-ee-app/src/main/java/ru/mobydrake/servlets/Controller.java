@@ -1,6 +1,7 @@
 package ru.mobydrake.servlets;
 
-import ru.mobydrake.entities.Product;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.mobydrake.repository.ProductRepository;
 
 import javax.inject.Inject;
@@ -14,6 +15,8 @@ import java.io.IOException;
 @WebServlet(name = "Controller", urlPatterns = {"", "/main", "/catalog", "/product", "/order", "/info", "/car"} )
 public class Controller extends HttpServlet {
 
+    private Logger logger = LoggerFactory.getLogger(Controller.class);
+
     @Inject
     private ProductRepository productRepository;
 
@@ -24,27 +27,13 @@ public class Controller extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html;charset=UTF-8");
 
         switch (req.getServletPath()) {
             case "/":
-            case "/main":
-                req.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(req, resp);
-                break;
-            case "/catalog":
-                req.getRequestDispatcher("/WEB-INF/views/catalog.xhtml").forward(req, resp);
-                break;
-            case "/car":
-                req.getRequestDispatcher("/WEB-INF/views/catalog.jsp").forward(req, resp);
-                break;
-            case "/info":
-                req.getRequestDispatcher("/WEB-INF/views/info.jsp").forward(req, resp);
+                req.getRequestDispatcher("/index.xhtml").forward(req, resp);
                 break;
             case "/product":
-                req.getRequestDispatcher("/WEB-INF/views/product.xhtml").forward(req, resp);
-                break;
-            case "/order":
-                req.getRequestDispatcher("/WEB-INF/views/order.jsp").forward(req, resp);
+                getServletContext().getRequestDispatcher("/product.xhtml").forward(req, resp);
                 break;
         }
     }
