@@ -6,14 +6,15 @@
 
   <display-name>Archetype Created Web Application</display-name>
 
-  <error-page>
-    <error-code>404</error-code>
-    <location>/error404</location>
-  </error-page>
+  <servlet>
+    <servlet-name>faces-servlet</servlet-name>
+    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
 
-  <error-page>
-    <error-code>403</error-code>
-    <location>/error403</location>
-  </error-page>
+  <servlet-mapping>
+    <servlet-name>faces-servlet</servlet-name>
+    <url-pattern>*.xhtml</url-pattern>
+  </servlet-mapping>
 
 </web-app>
