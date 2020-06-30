@@ -4,10 +4,10 @@ import ru.mobydrake.entities.Product;
 import ru.mobydrake.repository.ProductRepository;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.event.ComponentSystemEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.sql.SQLException;
 import java.util.List;
 
 @Named
@@ -19,6 +19,11 @@ public class ProductController implements Serializable {
 
     private Product product;
 
+    private List<Product> products;
+
+    public void preLoadProduct(ComponentSystemEvent componentSystemEvent) {
+        products = productRepository.findAll();
+    }
 
     public Product getProduct() {
         return product;
@@ -29,7 +34,7 @@ public class ProductController implements Serializable {
     }
 
     public List<Product> findAllProduct() {
-        return productRepository.getProductList();
+        return products;
     }
 
     public String createProduct() {
@@ -42,12 +47,17 @@ public class ProductController implements Serializable {
         return "/product.xhtml?faces-redirect=true";
     }
 
-    public void deleteProduct(Product product) throws SQLException {
-        productRepository.delete(product);
+    public void deleteProduct(Product product) {
+        productRepository.delete(product.getId());
     }
 
     public String saveProduct() {
-        productRepository.saveProduct(product);
+        productRepository.save(product);
+        return "/index.xhtml?faces-redirect=true";
+    }
+
+    public String updateProduct() {
+        productRepository.update(product);
         return "/index.xhtml?faces-redirect=true";
     }
 }

@@ -10,6 +10,8 @@
 
 <h:body>
 
+    <f:event listener="#{productController.preLoadProduct}" type="preRenderView"/>
+
     <ui:include src="WEB-INF/header.xhtml"/>
 
     <div class="container">

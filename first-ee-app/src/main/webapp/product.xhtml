@@ -36,8 +36,11 @@
 <!--                            <f:converter converterId="javax.faces.BigDecimal"/>-->
                         </h:inputText>
                     </div>
-                    <h:commandButton value="Submit" styleClass="btn btn-primary"
+                    <h:commandButton value="Save" styleClass="btn btn-primary"
                                      action="#{productController.saveProduct()}"/>
+
+                    <h:commandButton value="Update" styleClass="btn btn-primary"
+                                     action="#{productController.updateProduct()}"/>
                 </h:form>
             </div>
         </div>

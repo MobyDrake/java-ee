@@ -4,42 +4,61 @@ import ru.mobydrake.entities.Product;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.ServletException;
-import java.util.ArrayList;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.*;
 import java.util.List;
 
 @Named
 @ApplicationScoped
 public class ProductRepository {
 
-    private List<Product> productList;
+    @PersistenceContext(unitName = "ds")
+    private EntityManager entityManager;
+
+    @Inject
+    private UserTransaction ut;
 
     @PostConstruct
-    public void init() throws ServletException {
-        productList = new ArrayList<>();
-
-        productList.add(new Product(1L, "black pen", "something helpful", 10.2));
-        productList.add(new Product(2L, "bread", "something helpful", 3.2));
-        productList.add(new Product(3L, "egg", "something helpful", 7.9));
-        productList.add(new Product(4L, "milk", "something helpful", 9.2));
-        productList.add(new Product(5L, "note", "something helpful", 10.2));
-        productList.add(new Product(6L, "razor", "something helpful", 3.5));
-        productList.add(new Product(7L, "book", "something helpful", 15.5));
-        productList.add(new Product(8L, "red pen", "something helpful", 10.2));
-        productList.add(new Product(9L, "blue pen", "something helpful", 10.2));
+    public void init() {
+        if (this.findAll().isEmpty()) {
+            try {
+                ut.begin();
+                save(new Product("pen", "something helpful", 10.2));
+                save(new Product("bread", "something helpful", 3.2));
+                save(new Product("egg", "something helpful", 7.9));
+                ut.commit();
+            } catch (NotSupportedException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
-    public List<Product> getProductList() {
-        return productList;
+    public List<Product> findAll() {
+        return entityManager.createQuery("from Product", Product.class).getResultList();
     }
 
-    public void saveProduct(Product product) {
-        product.setId((productList.size() + 1L));
-        productList.add(product);
+    @Transactional
+    public void save(Product product) {
+        entityManager.persist(product);
     }
 
-    public void delete(Product product) {
-        productList.remove(product);
+    @Transactional
+    public void delete(Long id) {
+        Product product = entityManager.find(Product.class, id);
+        if (product != null) {
+            entityManager.remove(product);
+        }
+    }
+
+    @Transactional
+    public void update(Product product) {
+        entityManager.merge(product);
+    }
+
+    public Product findById(Long id) {
+        return entityManager.find(Product.class, id);
     }
 }
