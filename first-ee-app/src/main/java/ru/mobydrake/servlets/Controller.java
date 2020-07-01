@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "Controller", urlPatterns = {"", "/main", "/catalog", "/product", "/order", "/info", "/car"} )
+@WebServlet(name = "Controller", urlPatterns = {"", "/main", "/catalog", "/product", "/order", "/category", "/car"} )
 public class Controller extends HttpServlet {
 
     private Logger logger = LoggerFactory.getLogger(Controller.class);
@@ -34,6 +34,9 @@ public class Controller extends HttpServlet {
                 break;
             case "/product":
                 getServletContext().getRequestDispatcher("/product.xhtml").forward(req, resp);
+                break;
+            case "/category":
+                getServletContext().getRequestDispatcher("/category_all.xhtml").forward(req, resp);
                 break;
         }
     }

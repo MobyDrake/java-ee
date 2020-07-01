@@ -52,12 +52,11 @@ public class ProductController implements Serializable {
     }
 
     public String saveProduct() {
-        productRepository.save(product);
-        return "/index.xhtml?faces-redirect=true";
-    }
-
-    public String updateProduct() {
-        productRepository.update(product);
+        if (product.getId() == null) {
+            productRepository.save(product);
+        } else {
+            productRepository.update(product);
+        }
         return "/index.xhtml?faces-redirect=true";
     }
 }

@@ -36,11 +36,17 @@
 <!--                            <f:converter converterId="javax.faces.BigDecimal"/>-->
                         </h:inputText>
                     </div>
+                    <div class="form-group">
+                        <h:outputLabel value="Category" for="category"/>
+                        <h:selectOneMenu styleClass="form-control"  id="category" value="#{productController.product.category}">
+                            <f:selectItem  itemLabel="Select category" noSelectionOption="false"/>
+                            <f:selectItems value="#{categoryController.allCategory}" var="c" itemLabel="#{c.name}" itemValue="#{c.id}"  />
+                            <f:validateBean />
+                        </h:selectOneMenu>
+                    </div>
+
                     <h:commandButton value="Save" styleClass="btn btn-primary"
                                      action="#{productController.saveProduct()}"/>
-
-                    <h:commandButton value="Update" styleClass="btn btn-primary"
-                                     action="#{productController.updateProduct()}"/>
                 </h:form>
             </div>
         </div>

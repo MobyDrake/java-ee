@@ -12,6 +12,7 @@ public class Product {
     private String name;
     private String description;
     private Double price;
+    private Long category;
 
     public Product() {
     }
@@ -20,6 +21,14 @@ public class Product {
         this.name = name;
         this.description = description;
         this.price = price;
+    }
+
+    public Long getCategory() {
+        return category;
+    }
+
+    public void setCategory(Long category) {
+        this.category = category;
     }
 
     public Long getId() {

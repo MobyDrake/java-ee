@@ -1,0 +1,62 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:include src="WEB-INF/head.xhtml">
+    <ui:param name="pageHeader" value="Categories"/>
+</ui:include>
+
+<h:body>
+    <ui:include src="WEB-INF/header.xhtml"/>
+
+
+    <div class="container">
+
+        <div class="row py-2">
+            <h:form id="catForm">
+                <div class="col-12">
+                    <h:commandButton value="Add category" styleClass="btn btn-primary"
+                                     action="#{categoryController.create}"/>
+                </div>
+                <div class="col-12">
+                    <h:dataTable value="#{categoryController.allCategory}" var="category"
+                                 styleClass="table table-bordered my-2">
+
+                        <h:column>
+                            <f:facet name="header">id</f:facet>
+                            #{category.id}
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">name</f:facet>
+                            #{category.name}
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Action</f:facet>
+                            <h:commandButton value="Edit" action="#{categoryController.edit(category)}"
+                                             styleClass="btn btn-success mr-1"/>
+
+                            <h:commandButton value="Delete" action="#{categoryController.delete(category)}"
+                                             styleClass="btn btn-danger">
+                                <f:ajax event="click" render="catForm"/>
+                            </h:commandButton>
+                        </h:column>
+
+
+                    </h:dataTable>
+
+                </div>
+            </h:form>
+
+        </div>
+
+
+    </div>
+
+
+</h:body>
+
+</html>
