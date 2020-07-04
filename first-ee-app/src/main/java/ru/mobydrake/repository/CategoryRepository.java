@@ -39,9 +39,13 @@ public class CategoryRepository implements Serializable {
 
     @Transactional
     public void delete(Long id) {
-        Product product = entityManager.find(Product.class, id);
-        if (product != null) {
-            entityManager.remove(product);
+        Category category = entityManager.find(Category.class, id);
+        if (category != null) {
+            entityManager.remove(category);
         }
+    }
+
+    public Category findCategoryById(long id) {
+        return entityManager.find(Category.class, id);
     }
 }

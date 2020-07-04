@@ -1,4 +1,4 @@
-package ru.mobydrake.servlets;
+package ru.mobydrake.controller;
 
 import ru.mobydrake.entities.Category;
 import ru.mobydrake.repository.CategoryRepository;
@@ -7,7 +7,6 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.sql.SQLException;
 import java.util.List;
 
 @SessionScoped
@@ -26,17 +25,17 @@ public class CategoryController implements Serializable {
         this.category = category;
     }
 
-    public List<Category> getAllCategory() throws SQLException {
+    public List<Category> getAllCategory() {
         return categoryRepository.findAll();
     }
 
-    public String create(){
+    public String create() {
         this.category = new Category();
         return "/category_edit.xhtml?faces-redirect=true";
     }
 
 
-    public String edit(Category category){
+    public String edit(Category category) {
         this.category = category;
         return "/category_edit.xhtml?faces-redirect=true";
     }
@@ -50,7 +49,7 @@ public class CategoryController implements Serializable {
         return "/category_all.xhtml?faces-redirect=true";
     }
 
-    public void delete(Category category) throws SQLException {
+    public void delete(Category category) {
         categoryRepository.delete(category.getId());
     }
 }

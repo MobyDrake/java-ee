@@ -1,6 +1,7 @@
-package ru.mobydrake.servlets;
+package ru.mobydrake.controller;
 
 import ru.mobydrake.entities.Product;
+import ru.mobydrake.repository.CategoryRepository;
 import ru.mobydrake.repository.ProductRepository;
 
 import javax.enterprise.context.SessionScoped;
@@ -17,7 +18,12 @@ public class ProductController implements Serializable {
     @Inject
     private ProductRepository productRepository;
 
+    @Inject
+    private CategoryRepository categoryRepository;
+
     private Product product;
+    private Long categoryId;
+
 
     private List<Product> products;
 
@@ -33,6 +39,14 @@ public class ProductController implements Serializable {
         this.product = product;
     }
 
+    public Long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
+    }
+
     public List<Product> findAllProduct() {
         return products;
     }
@@ -44,6 +58,9 @@ public class ProductController implements Serializable {
 
     public String editProduct(Product product) {
         this.product = product;
+        if (categoryId != null) {
+            product.setCategory(categoryRepository.findCategoryById(categoryId));
+        }
         return "/product.xhtml?faces-redirect=true";
     }
 
