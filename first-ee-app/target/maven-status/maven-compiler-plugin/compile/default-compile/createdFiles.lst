@@ -1,4 +1,7 @@
-ru\mobydrake\entities\Product.class
 ru\mobydrake\repository\ProductRepository.class
-ru\mobydrake\servlets\ProductController.class
+ru\mobydrake\servlets\CategoryController.class
 ru\mobydrake\servlets\Controller.class
+ru\mobydrake\entities\Product.class
+ru\mobydrake\repository\CategoryRepository.class
+ru\mobydrake\servlets\ProductController.class
+ru\mobydrake\entities\Category.class
