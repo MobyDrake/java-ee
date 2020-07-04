@@ -1,8 +1,9 @@
 package ru.mobydrake.controller;
 
+import ru.mobydrake.dto.ProductPojo;
 import ru.mobydrake.entities.Product;
-import ru.mobydrake.repository.CategoryRepository;
-import ru.mobydrake.repository.ProductRepository;
+import ru.mobydrake.service.CategoryService;
+import ru.mobydrake.service.ProductService;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.event.ComponentSystemEvent;
@@ -16,27 +17,27 @@ import java.util.List;
 public class ProductController implements Serializable {
 
     @Inject
-    private ProductRepository productRepository;
+    private ProductService productService;
 
     @Inject
-    private CategoryRepository categoryRepository;
+    private CategoryService categoryService;
 
-    private Product product;
+    private ProductPojo productPojo;
     private Long categoryId;
 
 
-    private List<Product> products;
+    private List<ProductPojo> products;
 
     public void preLoadProduct(ComponentSystemEvent componentSystemEvent) {
-        products = productRepository.findAll();
+        products = productService.findAll();
     }
 
-    public Product getProduct() {
-        return product;
+    public ProductPojo getProductPojo() {
+        return productPojo;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProductPojo(ProductPojo productPojo) {
+        this.productPojo = productPojo;
     }
 
     public Long getCategoryId() {
@@ -47,32 +48,32 @@ public class ProductController implements Serializable {
         this.categoryId = categoryId;
     }
 
-    public List<Product> findAllProduct() {
+    public List<ProductPojo> findAllProduct() {
         return products;
     }
 
     public String createProduct() {
-        this.product = new Product();
+        this.productPojo = new ProductPojo();
         return "/product.xhtml?faces-redirect=true";
     }
 
-    public String editProduct(Product product) {
-        this.product = product;
+    public String editProduct(ProductPojo productPojo) {
+        this.productPojo = productPojo;
         if (categoryId != null) {
-            product.setCategory(categoryRepository.findCategoryById(categoryId));
+            productPojo.setCategoryPojo(categoryService.findCategoryById(categoryId));
         }
         return "/product.xhtml?faces-redirect=true";
     }
 
-    public void deleteProduct(Product product) {
-        productRepository.delete(product.getId());
+    public void deleteProduct(ProductPojo productPojo) {
+        productService.delete(productPojo.getId());
     }
 
     public String saveProduct() {
-        if (product.getId() == null) {
-            productRepository.save(product);
+        if (productPojo.getId() == null) {
+            productService.insert(productPojo);
         } else {
-            productRepository.update(product);
+            productService.update(productPojo);
         }
         return "/index.xhtml?faces-redirect=true";
     }
