@@ -2,7 +2,6 @@ package ru.mobydrake.controller;
 
 import ru.mobydrake.dto.CategoryPojo;
 import ru.mobydrake.entities.Category;
-import ru.mobydrake.repository.CategoryRepository;
 import ru.mobydrake.service.CategoryService;
 
 import javax.enterprise.context.SessionScoped;

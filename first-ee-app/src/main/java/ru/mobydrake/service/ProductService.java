@@ -1,11 +1,10 @@
 package ru.mobydrake.service;
 
 import ru.mobydrake.dto.ProductPojo;
-import ru.mobydrake.entities.Product;
 import ru.mobydrake.repository.ProductRepository;
 
+import javax.ejb.EJB;
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
 import javax.transaction.Transactional;
 import java.util.List;
@@ -15,7 +14,7 @@ import java.util.stream.Collectors;
 @ApplicationScoped
 public class ProductService {
 
-    @Inject
+    @EJB
     ProductRepository productRepository;
 
     @Transactional

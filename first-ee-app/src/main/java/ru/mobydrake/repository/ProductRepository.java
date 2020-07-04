@@ -2,63 +2,18 @@ package ru.mobydrake.repository;
 
 import ru.mobydrake.entities.Product;
 
-import javax.annotation.PostConstruct;
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-import javax.inject.Named;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.transaction.*;
+import javax.ejb.Local;
 import java.util.List;
 
-@Named
-@ApplicationScoped
-public class ProductRepository {
+@Local
+public interface ProductRepository {
+    List<Product> findAll();
 
-    @PersistenceContext(unitName = "ds")
-    private EntityManager entityManager;
+    void save(Product product);
 
-    @Inject
-    private UserTransaction ut;
+    void delete(Long id);
 
-    @PostConstruct
-    public void init() {
-        if (this.findAll().isEmpty()) {
-            try {
-                ut.begin();
-                save(new Product("pen", "something helpful", 10.2));
-                save(new Product("bread", "something helpful", 3.2));
-                save(new Product("egg", "something helpful", 7.9));
-                ut.commit();
-            } catch (NotSupportedException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException e) {
-                e.printStackTrace();
-            }
-        }
-    }
+    void update(Product product);
 
-    public List<Product> findAll() {
-        return entityManager.createQuery("from Product", Product.class).getResultList();
-    }
-
-    @Transactional
-    public void save(Product product) {
-        entityManager.persist(product);
-    }
-
-    @Transactional
-    public void delete(Long id) {
-        Product product = entityManager.find(Product.class, id);
-        if (product != null) {
-            entityManager.remove(product);
-        }
-    }
-
-    @Transactional
-    public void update(Product product) {
-        entityManager.merge(product);
-    }
-
-    public Product findById(Long id) {
-        return entityManager.find(Product.class, id);
-    }
+    Product findById(Long id);
 }

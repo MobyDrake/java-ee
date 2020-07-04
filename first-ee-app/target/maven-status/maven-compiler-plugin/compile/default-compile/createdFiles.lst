@@ -1,10 +1,12 @@
+ru\mobydrake\repository\CategoryRepository.class
+ru\mobydrake\dto\ProductPojo.class
+ru\mobydrake\controller\CategoryController.class
+ru\mobydrake\repository\ProductRepositoryImp.class
 ru\mobydrake\repository\ProductRepository.class
 ru\mobydrake\dto\CategoryPojo.class
 ru\mobydrake\service\CategoryService.class
 ru\mobydrake\entities\Product.class
-ru\mobydrake\repository\CategoryRepository.class
-ru\mobydrake\dto\ProductPojo.class
-ru\mobydrake\controller\CategoryController.class
 ru\mobydrake\entities\Category.class
+ru\mobydrake\repository\CategoryRepositoryImp.class
 ru\mobydrake\service\ProductService.class
 ru\mobydrake\controller\ProductController.class

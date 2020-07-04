@@ -4,8 +4,8 @@ import ru.mobydrake.dto.CategoryPojo;
 import ru.mobydrake.entities.Category;
 import ru.mobydrake.repository.CategoryRepository;
 
+import javax.ejb.EJB;
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
 import javax.transaction.Transactional;
 import java.util.List;
@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 @ApplicationScoped
 public class CategoryService {
 
-    @Inject
+    @EJB
     CategoryRepository categoryRepository;
 
     @Transactional
