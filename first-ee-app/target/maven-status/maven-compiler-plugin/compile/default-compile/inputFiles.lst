@@ -1,3 +1,7 @@
 D:\GitHub\GeekBrains\java-ee\first-ee-app\src\main\java\ru\mobydrake\entities\Product.java
-D:\GitHub\GeekBrains\java-ee\first-ee-app\src\main\java\ru\mobydrake\servlets\Calc.java
+D:\GitHub\GeekBrains\java-ee\first-ee-app\src\main\java\ru\mobydrake\repository\ProductRepository.java
+D:\GitHub\GeekBrains\java-ee\first-ee-app\src\main\java\ru\mobydrake\repository\CategoryRepository.java
+D:\GitHub\GeekBrains\java-ee\first-ee-app\src\main\java\ru\mobydrake\servlets\CategoryController.java
 D:\GitHub\GeekBrains\java-ee\first-ee-app\src\main\java\ru\mobydrake\servlets\Controller.java
+D:\GitHub\GeekBrains\java-ee\first-ee-app\src\main\java\ru\mobydrake\entities\Category.java
+D:\GitHub\GeekBrains\java-ee\first-ee-app\src\main\java\ru\mobydrake\servlets\ProductController.java
