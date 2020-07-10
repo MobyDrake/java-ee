@@ -4,6 +4,7 @@ import ru.mobydrake.entities.Product;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -24,13 +25,13 @@ public class ProductRepositoryImp implements ProductRepository {
     }
 
     @Override
-    @Transactional
+    @TransactionAttribute
     public void save(Product product) {
         entityManager.persist(product);
     }
 
     @Override
-    @Transactional
+    @TransactionAttribute
     public void delete(Long id) {
         Product product = entityManager.find(Product.class, id);
         if (product != null) {
@@ -39,7 +40,7 @@ public class ProductRepositoryImp implements ProductRepository {
     }
 
     @Override
-    @Transactional
+    @TransactionAttribute
     public void update(Product product) {
         entityManager.merge(product);
     }
@@ -47,5 +48,15 @@ public class ProductRepositoryImp implements ProductRepository {
     @Override
     public Product findById(Long id) {
         return entityManager.find(Product.class, id);
+    }
+
+    @Override
+    public Product findByName(String name) {
+        return entityManager.createNamedQuery("ProductByName", Product.class).setParameter("name", name).getSingleResult();
+    }
+
+    @Override
+    public List<Product> findAllByCategoryId(Long id) {
+        return entityManager.createQuery("from Product where category.id = :id").setParameter("id", id).getResultList();
     }
 }

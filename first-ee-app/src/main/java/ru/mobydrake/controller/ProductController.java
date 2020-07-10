@@ -1,7 +1,6 @@
 package ru.mobydrake.controller;
 
 import ru.mobydrake.dto.ProductPojo;
-import ru.mobydrake.entities.Product;
 import ru.mobydrake.service.CategoryService;
 import ru.mobydrake.service.ProductService;
 
@@ -23,7 +22,7 @@ public class ProductController implements Serializable {
     private CategoryService categoryService;
 
     private ProductPojo productPojo;
-    private Long categoryId;
+    private Long categoryId = -1L;
 
 
     private List<ProductPojo> products;
@@ -49,7 +48,8 @@ public class ProductController implements Serializable {
     }
 
     public List<ProductPojo> findAllProduct() {
-        return products;
+        if(categoryId == -1) return productService.findAll();
+        else  return productService.findAllByCategoryId(categoryId);
     }
 
     public String createProduct() {
@@ -59,9 +59,6 @@ public class ProductController implements Serializable {
 
     public String editProduct(ProductPojo productPojo) {
         this.productPojo = productPojo;
-        if (categoryId != null) {
-            productPojo.setCategoryPojo(categoryService.findCategoryById(categoryId));
-        }
         return "/product.xhtml?faces-redirect=true";
     }
 
@@ -71,7 +68,7 @@ public class ProductController implements Serializable {
 
     public String saveProduct() {
         if (productPojo.getId() == null) {
-            productService.insert(productPojo);
+            productService.insertProduct(productPojo);
         } else {
             productService.update(productPojo);
         }

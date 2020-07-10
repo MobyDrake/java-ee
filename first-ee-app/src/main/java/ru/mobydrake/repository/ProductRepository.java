@@ -16,4 +16,8 @@ public interface ProductRepository {
     void update(Product product);
 
     Product findById(Long id);
+
+    Product findByName(String name);
+
+    List<Product> findAllByCategoryId(Long id);
 }
