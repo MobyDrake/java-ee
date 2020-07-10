@@ -5,6 +5,7 @@ import ru.mobydrake.entities.Category;
 import ru.mobydrake.entities.Product;
 import ru.mobydrake.repository.CategoryRepository;
 import ru.mobydrake.repository.ProductRepository;
+import ru.mobydrake.rest.ProductServiceRs;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.ApplicationScoped;
@@ -16,8 +17,8 @@ import java.util.stream.Collectors;
 
 @Named
 @ApplicationScoped
-@WebService(endpointInterface = "ru.mobydrake.service.ProductServiceWs", serviceName = "ProductService")
-public class ProductService implements ProductServiceWs{
+//@WebService(endpointInterface = "ru.mobydrake.service.ProductServiceWs", serviceName = "ProductService")
+public class ProductService implements ProductServiceWs, ProductServiceRs {
 
     @EJB
     private ProductRepository productRepository;
