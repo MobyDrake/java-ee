@@ -12,7 +12,9 @@ public class Product {
     private String name;
     private String description;
     private Double price;
-    private Long category;
+
+    @ManyToOne
+    private Category category;
 
     public Product() {
     }
@@ -23,12 +25,12 @@ public class Product {
         this.price = price;
     }
 
-    public Long getCategory() {
-        return category;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
-    public void setCategory(Long category) {
-        this.category = category;
+    public Category getCategory() {
+        return category;
     }
 
     public Long getId() {

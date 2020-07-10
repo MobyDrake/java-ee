@@ -19,29 +19,28 @@
                     <div class="form-group">
                         <h:outputLabel value="Name" for="name"/>
                         <h:inputText styleClass="form-control" id="name" name="name" placeholder="Enter name"
-                                     value="#{productController.product.name}" required="true"
+                                     value="#{productController.productPojo.name}" required="true"
                                      requiredMessage="Name is required"/>
                     </div>
                     <div class="form-group">
                         <h:outputLabel value="Description" for="description"/>
                         <h:inputText styleClass="form-control" id="description" name="description"
                                      placeholder="Enter desription"
-                                     value="#{productController.product.description}"/>
+                                     value="#{productController.productPojo.description}"/>
                     </div>
                     <div class="form-group">
                         <h:outputLabel value="Price" for="price"/>
                         <h:inputText p:type="number" styleClass="form-control" id="price" name="price"
                                      placeholder="Enter price"
-                                     value="#{productController.product.price}">
-<!--                            <f:converter converterId="javax.faces.BigDecimal"/>-->
+                                     value="#{productController.productPojo.price}">
                         </h:inputText>
                     </div>
                     <div class="form-group">
-                        <h:outputLabel value="Category" for="category"/>
-                        <h:selectOneMenu styleClass="form-control"  id="category" value="#{productController.product.category}">
-                            <f:selectItem  itemLabel="Select category" noSelectionOption="false"/>
+                        <h:outputLabel value="Category" for="category_id"/>
+                        <h:selectOneMenu styleClass="form-control"  id="category_id" value="#{productController.categoryId}">
+                            <f:selectItem  itemLabel="Без категории" itemValue="-1"/>
+                            <f:selectItem  itemLabel="#{productController.productPojo.categoryPojo.name}"/>
                             <f:selectItems value="#{categoryController.allCategory}" var="c" itemLabel="#{c.name}" itemValue="#{c.id}"  />
-                            <f:validateBean />
                         </h:selectOneMenu>
                     </div>
 

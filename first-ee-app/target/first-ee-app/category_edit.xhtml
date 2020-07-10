@@ -19,7 +19,7 @@
                         <h:outputLabel value="Name" for="name"/>
                         <h:message for= "name" style= "color: red" />
                         <h:inputText styleClass="form-control" id="name"
-                                     value="#{categoryController.category.name}" required="true"
+                                     value="#{categoryController.categoryPojo.name}" required="true"
                                      requiredMessage="Name is required">
                             <f:validateBean />
                         </h:inputText>
