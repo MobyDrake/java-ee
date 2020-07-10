@@ -1,7 +1,9 @@
 ru\mobydrake\repository\CategoryRepository.class
 ru\mobydrake\dto\ProductPojo.class
 ru\mobydrake\controller\CategoryController.class
+ru\mobydrake\service\CategoryServiceWs.class
 ru\mobydrake\repository\ProductRepositoryImp.class
+ru\mobydrake\service\ProductServiceWs.class
 ru\mobydrake\repository\ProductRepository.class
 ru\mobydrake\dto\CategoryPojo.class
 ru\mobydrake\service\CategoryService.class

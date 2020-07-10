@@ -3,7 +3,9 @@ package ru.mobydrake.dto;
 
 import ru.mobydrake.entities.Product;
 
-import java.math.BigDecimal;
+import javax.validation.constraints.NotNull;
+import java.util.Objects;
+
 
 public class ProductPojo {
 
@@ -11,7 +13,8 @@ public class ProductPojo {
     private String name;
     private String description;
     private Double price;
-    private CategoryPojo categoryPojo;
+    @NotNull
+    private Long categoryId;
 
     public ProductPojo() {
     }
@@ -21,21 +24,9 @@ public class ProductPojo {
         this.name = product.getName();
         this.description = product.getDescription();
         this.price = product.getPrice();
-        if (product.getCategory() != null) {
-            this.categoryPojo = new CategoryPojo(product.getCategory());
-        }
+        this.categoryId = product.getCategory().getId();
     }
 
-    public Product createProduct() {
-        Product product = new Product();
-        product.setName(name);
-        if (categoryPojo != null) {
-            product.setCategory(categoryPojo.createCategory());
-        }
-        product.setDescription(description);
-        product.setPrice(price);
-        return product;
-    }
 
     public Long getId() {
         return id;
@@ -69,11 +60,24 @@ public class ProductPojo {
         this.price = price;
     }
 
-    public CategoryPojo getCategoryPojo() {
-        return categoryPojo;
+    public Long getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategoryPojo(CategoryPojo categoryPojo) {
-        this.categoryPojo = categoryPojo;
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProductPojo that = (ProductPojo) o;
+        return id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

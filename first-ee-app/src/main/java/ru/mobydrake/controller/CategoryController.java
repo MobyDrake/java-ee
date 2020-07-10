@@ -51,7 +51,7 @@ public class CategoryController implements Serializable {
 
     public String save() {
         if (categoryPojo.getId() == null) {
-            categoryService.insert(categoryPojo);
+            categoryService.insertCategory(categoryPojo);
         } else {
             categoryService.update(categoryPojo);
         }
@@ -60,5 +60,9 @@ public class CategoryController implements Serializable {
 
     public void delete(CategoryPojo categoryPojo) {
         categoryService.delete(categoryPojo.getId());
+    }
+
+    public CategoryPojo findById(Long id){
+        return categoryService.findCategoryById(id);
     }
 }
