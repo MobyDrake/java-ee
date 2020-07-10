@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 @Named
 @ApplicationScoped
-@WebService(endpointInterface = "ru.mobydrake.service.ProductServiceWs", serviceName = "ProductService")
+//@WebService(endpointInterface = "ru.mobydrake.service.ProductServiceWs", serviceName = "ProductService")
 public class ProductService implements ProductServiceWs, ProductServiceRs {
 
     @EJB
